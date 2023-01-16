@@ -1,0 +1,120 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://soa/dtos" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://soa/dtos"
+           elementFormDefault="qualified">
+
+
+    <xs:element name="getRouteByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getRouteByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="routeSchema" type="tns:routeSchema"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="deleteRouteByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteRouteByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="createRouteRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="routeDtoSchema" type="tns:routeDtoSchema"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createRouteResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="messageDtoSchema" type="tns:messageDtoSchema"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="routeSumDistancesRequest">
+    </xs:element>
+
+
+    <xs:element name="routeSumDistancesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+
+    <xs:complexType name="coordinatesSchema">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int" minOccurs="0"/>
+            <xs:element name="x" type="xs:float"/>
+            <xs:element name="y" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="locationSchema">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int" minOccurs="0"/>
+            <xs:element name="x" type="xs:int"/>
+            <xs:element name="y" type="xs:float"/>
+            <xs:element name="z" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="routeSchema">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="coordinates" type="tns:coordinatesSchema"/>
+            <xs:element name="creationDate" type="xs:string"/>
+            <xs:element name="from" type="tns:locationSchema"/>
+            <xs:element name="to" type="tns:locationSchema"/>
+            <xs:element name="distance" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="routeDtoSchema">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="coordinatesId" type="xs:int"/>
+            <xs:element name="fromId" type="xs:int"/>
+            <xs:element name="toId" type="xs:int"/>
+            <xs:element name="distance" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="messageDtoSchema">
+        <xs:sequence>
+            <xs:element name="routeSchema" type="tns:routeSchema"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+</xs:schema>
